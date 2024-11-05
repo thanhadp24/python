@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/book_detail.css') }}">
+</head>
+<body>
+    
+{% include 'header.html' %}
+
+<main>
+    <div class="container d-flex bg-book text-light p-5">
+        <div>
+            <img src="{{ url_for('static', filename='images/' + book.cover) }}" width="310px" height="450px">
+        </div>
+        <div class="ps-4">
+            <h2 class="title">{{book.title}}</h2>
+            <p><span class="opacity-75">Author: </span>{{book.author}}</p>
+            <p><span class="opacity-75">Year: </span>{{book.publish_year}}</p>
+            <p><span class="opacity-75">Publisher: </span>{{book.publisher}}</p>
+            <p><span class="opacity-75">Summary: </span><br>{{book.summary}}
+            </p>
+            <p><span class="opacity-75">Category: &nbsp;</span> <a href="{{url_for('getBooksByCategoryId', id=book.category_id)}}" class="rounded-pill btn btn-outline-light px-5">{{category}}</a></p>
+            <div>
+                <button class="button btn-read me-3">Read online</button>
+                <button class="button btn-dowload"><i class="fa-solid fa-download"></i> Dowload</button>
+            </div>
+            <p class="opacity-75 mt-2">
+                <span><i class="fa-regular fa-eye"></i> {{book.view_count}} views</span>
+                <span class="ms-3"><i class="fa-solid fa-download"></i> {{book.dowload_count}} dowloads</span>
+            </p>
+        </div>
+    </div>
+</main>
+
+
+{% include 'footer.html' %}
+
+</body>
+</html>
